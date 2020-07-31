@@ -5,7 +5,6 @@ import items from "../data";
 export const RoomContext = createContext();
 
 const RoomProvider = (props) => {
-  const hello = "hello";
   const [rooms, setRooms] = useState([]);
   const [sortedRooms, setSortedRooms] = useState([]);
   const [featuredRooms, setFeaturedRooms] = useState([]);
@@ -16,7 +15,7 @@ const RoomProvider = (props) => {
     //set rooms
     const rooms = formatData(items);
     //set the featured rooms
-    let featuredRooms = rooms.filter((room) => room.featured === true);
+    const featuredRooms = rooms.filter((room) => room.featured === true);
     setRooms(rooms);
     setSortedRooms(rooms);
     setFeaturedRooms(featuredRooms);
@@ -38,7 +37,6 @@ const RoomProvider = (props) => {
   return (
     <RoomContext.Provider
       value={{
-        hello,
         featuredRooms,
       }}
     >
