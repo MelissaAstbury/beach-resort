@@ -34,10 +34,17 @@ const RoomProvider = (props) => {
     return tempItems;
   };
 
+  const getRoom = (slug) => {
+    let tempRooms = [...rooms];
+    const room = tempRooms.find((room) => room.slug === slug);
+    return room;
+  };
+
   return (
     <RoomContext.Provider
       value={{
         featuredRooms,
+        getRoom,
       }}
     >
       {props.children}
