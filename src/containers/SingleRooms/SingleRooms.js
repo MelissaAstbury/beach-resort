@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { RoomContext } from "../../context/RoomContext";
 
 // import defaultBackgroundImage from "../../images/room-1.jpeg";
-// import Hero from "../../components/Hero/Hero";
-// import Banner from "../../components/Banner/Banner";
+import Hero from "../../components/Hero/Hero";
+import Banner from "../../components/Banner/Banner";
 
 //react-router-dom provides the props
 const SingleRooms = (props) => {
@@ -26,10 +26,26 @@ const SingleRooms = (props) => {
   }
   console.log("hi", room);
 
+  const {
+    name,
+    description,
+    capacity,
+    size,
+    price,
+    extras,
+    breakfast,
+    pets,
+    images,
+  } = room;
+
   return (
-    <div>
-      <h1>Single Room Page {room.name}</h1>
-    </div>
+    <Hero hero="roomsHero">
+      <Banner title={`${name} room`}>
+        <Link to="/rooms" className="btn-primary">
+          Back to Rooms
+        </Link>
+      </Banner>
+    </Hero>
   );
 };
 
