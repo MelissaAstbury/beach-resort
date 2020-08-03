@@ -6,7 +6,6 @@ import Hero from "../../components/Hero/Hero";
 import Banner from "../../components/Banner/Banner";
 import ServicesSection from "../../components/ServicesSection/ServicesSection";
 import FeaturedRooms from "../../components/FeaturedRooms/FeaturedRooms";
-import StyledButton from "../../components/StyledHero/StyledHero";
 
 const Home = () => {
   return (
@@ -23,7 +22,6 @@ const Home = () => {
       </Hero>
       <ServicesSection />
       <FeaturedRooms />
-      <StyledButton>Hello</StyledButton>
     </>
   );
 };
