@@ -45,6 +45,7 @@ const RoomProvider = (props) => {
       value={{
         featuredRooms,
         getRoom,
+        loading,
       }}
     >
       {props.children}
