@@ -11,11 +11,10 @@ const RoomsContainer = () => {
     return <Loading />;
   }
   return (
-    <div>
-      <p>Hello from rooms container</p>
+    <>
       <RoomFilter rooms={rooms} />
       <RoomList rooms={sortedRooms} />
-    </div>
+    </>
   );
 };
 

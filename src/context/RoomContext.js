@@ -46,6 +46,7 @@ const RoomProvider = (props) => {
         featuredRooms,
         getRoom,
         loading,
+        sortedRooms,
       }}
     >
       {props.children}

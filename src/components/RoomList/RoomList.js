@@ -1,10 +1,24 @@
 import React from "react";
 
-const RoomList = () => {
+import Room from "../../components/Room/Room";
+
+const RoomList = ({ rooms }) => {
+  console.log(rooms);
+  if (rooms.length === 0) {
+    return (
+      <div className="empty-search">
+        <h3>Unfortunatly no rooms matched your search</h3>
+      </div>
+    );
+  }
   return (
-    <div>
-      <h1>This is the room list</h1>
-    </div>
+    <section className="roomslist">
+      <div className="roomlist-center">
+        {rooms.map((item) => {
+          return <Room key={item.id} room={item} />;
+        })}
+      </div>
+    </section>
   );
 };
 
