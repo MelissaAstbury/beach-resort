@@ -11,7 +11,7 @@ const RoomProvider = (props) => {
   const [loading, setLoading] = useState(true);
   const [type, setType] = useState("all");
   const [capacity, setCapacity] = useState(1);
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(600);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const [minSize, setMinSize] = useState(0);
@@ -36,7 +36,6 @@ const RoomProvider = (props) => {
     setLoading(false);
     setMaxPrice(maxPrice);
     setMaxSize(maxSize);
-    setPrice(maxPrice);
     filteredRooms();
   }, [
     type,
@@ -109,9 +108,20 @@ const RoomProvider = (props) => {
   const filteredRooms = () => {
     let tempRooms = [...rooms];
 
+    //filter by type
     if (type !== "all") {
       tempRooms = tempRooms.filter((room) => room.type === type);
     }
+
+    //filter by capacity
+    if (capacity !== "1") {
+      tempRooms = tempRooms.filter((room) => room.capacity >= capacity);
+    }
+
+    //filter price
+    tempRooms = tempRooms.filter((room) => room.price <= price);
+
+    // update avalible rooms
     setSortedRooms(tempRooms);
   };
 

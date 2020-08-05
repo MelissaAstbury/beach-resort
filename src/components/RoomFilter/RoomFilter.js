@@ -21,16 +21,7 @@ const RoomFilter = ({ rooms }) => {
     breakfast,
     pets,
   } = useContext(RoomContext);
-  console.log(
-    capacity,
-    price,
-    minSize,
-    minPrice,
-    maxPrice,
-    maxSize,
-    breakfast,
-    pets
-  );
+
   //get unique types
   let types = getUniqueValues(rooms, "type");
   //add all
@@ -39,6 +30,16 @@ const RoomFilter = ({ rooms }) => {
   types = types.map((item, index) => {
     return (
       <option value={item} key={index}>
+        {item}
+      </option>
+    );
+  });
+
+  //get number of people - capacity
+  let people = getUniqueValues(rooms, "capacity");
+  people = people.map((item, index) => {
+    return (
+      <option key={index} value={item}>
         {item}
       </option>
     );
@@ -62,6 +63,37 @@ const RoomFilter = ({ rooms }) => {
           </select>
         </div>
         {/* end select type */}
+
+        {/* guests */}
+        <div className="form-group">
+          <label htmlFor="capacity">Guests</label>
+          <select
+            name="capacity"
+            id="capacity"
+            value={capacity}
+            className="form-control"
+            onChange={handleChange}
+          >
+            {people}
+          </select>
+        </div>
+        {/* end guests */}
+
+        {/* room price */}
+        <div className="form-group">
+          <label htmlFor="price">Room Price £{price}</label>
+          <input
+            type="range"
+            name="price"
+            min={minPrice}
+            max={maxPrice}
+            id="price"
+            value={price}
+            onChange={handleChange}
+            className="form-control"
+          />
+        </div>
+        {/* end of room price*/}
       </form>
     </section>
   );
