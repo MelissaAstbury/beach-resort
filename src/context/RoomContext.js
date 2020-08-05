@@ -15,7 +15,7 @@ const RoomProvider = (props) => {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const [minSize, setMinSize] = useState(0);
-  const [maxSize, setMaxSize] = useState(0);
+  const [maxSize, setMaxSize] = useState(1000);
   const [breakfast, setBreakfast] = useState(false);
   const [pets, setPets] = useState(false);
 
@@ -35,7 +35,7 @@ const RoomProvider = (props) => {
     setFeaturedRooms(featuredRooms);
     setLoading(false);
     setMaxPrice(maxPrice);
-    setMaxSize(maxSize);
+    // setMaxSize(maxSize);
     filteredRooms();
   }, [
     type,
@@ -69,7 +69,7 @@ const RoomProvider = (props) => {
 
   const handleChange = (e) => {
     const target = e.target;
-    const value = e.type === "checkbox" ? target.checked : target.value;
+    const value = target.type === "checkbox" ? target.checked : target.value;
     const name = e.target.name;
 
     switch (name) {
@@ -120,6 +120,21 @@ const RoomProvider = (props) => {
 
     //filter price
     tempRooms = tempRooms.filter((room) => room.price <= price);
+
+    //filter by size
+    tempRooms = tempRooms.filter(
+      (room) => room.size >= minSize && room.size <= maxSize
+    );
+
+    //filter for breakfast
+    if (breakfast) {
+      tempRooms = tempRooms.filter((room) => room.breakfast === true);
+    }
+
+    //filter for pets
+    if (pets) {
+      tempRooms = tempRooms.filter((room) => room.pets === true);
+    }
 
     // update avalible rooms
     setSortedRooms(tempRooms);
