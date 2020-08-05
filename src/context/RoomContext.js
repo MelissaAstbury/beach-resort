@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { useContext, createContext, useState, useEffect } from "react";
 
 import items from "../data";
 
@@ -58,14 +58,53 @@ const RoomProvider = (props) => {
   };
 
   const handleChange = (e) => {
-    const type = e.target.type;
+    const target = e.target;
+    const value = e.type === "checkbox" ? target.checked : target.value;
     const name = e.target.name;
-    const value = e.target.value;
-    console.log(type, name, value);
+
+    switch (name) {
+      case "type":
+        setType(value);
+        break;
+      case "capacity":
+        setCapacity(value);
+        break;
+      case "price":
+        setPrice(value);
+        break;
+      case "minPrice":
+        setMinPrice(value);
+        break;
+      case "maxPrice":
+        setMaxPrice(value);
+        break;
+      case "minSize":
+        setMinSize(value);
+        break;
+      case "maxSize":
+        setMaxSize(value);
+        break;
+      case "breakfast":
+        setBreakfast(value);
+        break;
+      case "pets":
+        setPets(value);
+        break;
+      default:
+        return;
+    }
+    console.log(name, value);
+    filteredRooms();
   };
 
   const filteredRooms = () => {
-    console.log("hello");
+    let initialRooms = [...rooms];
+    if (type !== "all") {
+      initialRooms = initialRooms.filter((room) => room.type === type);
+    }
+    console.log("room type is", type);
+    setSortedRooms(initialRooms);
+    console.log("hey", initialRooms);
   };
 
   return (
