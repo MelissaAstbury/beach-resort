@@ -21,7 +21,16 @@ const RoomFilter = ({ rooms }) => {
     breakfast,
     pets,
   } = useContext(RoomContext);
-
+  console.log(
+    capacity,
+    price,
+    minSize,
+    minPrice,
+    maxPrice,
+    maxSize,
+    breakfast,
+    pets
+  );
   //get unique types
   let types = getUniqueValues(rooms, "type");
   //add all

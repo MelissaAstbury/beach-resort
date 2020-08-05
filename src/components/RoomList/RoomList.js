@@ -3,7 +3,6 @@ import React from "react";
 import Room from "../../components/Room/Room";
 
 const RoomList = ({ rooms }) => {
-  console.log(rooms);
   if (rooms.length === 0) {
     return (
       <div className="empty-search">

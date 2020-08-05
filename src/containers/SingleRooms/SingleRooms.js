@@ -3,16 +3,16 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { RoomContext } from "../../context/RoomContext";
 
-import Hero from "../../components/Hero/Hero";
+// import Hero from "../../components/Hero/Hero";
 import Banner from "../../components/Banner/Banner";
 import StyledHero from "../../components/StyledHero/StyledHero";
 
 //react-router-dom provides the props
 const SingleRooms = (props) => {
   const { getRoom } = useContext(RoomContext);
-  const [slug, setSlug] = useState(props.match.params.slug);
-  const [room, setRoom] = useState(getRoom(slug));
-  const [defaultBackgroundImage, setDefaultBackgroundImage] = useState();
+  const [slug] = useState(props.match.params.slug);
+  const [room] = useState(getRoom(slug));
+  // const [defaultBackgroundImage, setDefaultBackgroundImage] = useState();
 
   if (!room) {
     return (

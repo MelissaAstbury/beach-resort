@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 import items from "../data";
 
@@ -37,7 +37,18 @@ const RoomProvider = (props) => {
     setMaxPrice(maxPrice);
     setMaxSize(maxSize);
     setPrice(maxPrice);
-  }, []);
+    filteredRooms();
+  }, [
+    type,
+    capacity,
+    price,
+    minPrice,
+    maxPrice,
+    minSize,
+    maxSize,
+    breakfast,
+    pets,
+  ]);
 
   //format data is getting all the required fields we want to pull from the originl data
   const formatData = (items) => {
@@ -93,18 +104,15 @@ const RoomProvider = (props) => {
       default:
         return;
     }
-    console.log(name, value);
-    filteredRooms();
   };
 
   const filteredRooms = () => {
-    let initialRooms = [...rooms];
+    let tempRooms = [...rooms];
+
     if (type !== "all") {
-      initialRooms = initialRooms.filter((room) => room.type === type);
+      tempRooms = tempRooms.filter((room) => room.type === type);
     }
-    console.log("room type is", type);
-    setSortedRooms(initialRooms);
-    console.log("hey", initialRooms);
+    setSortedRooms(tempRooms);
   };
 
   return (
