@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 
-import items from "../data";
+// import items from "../data";
+import Client from "../Contentful";
 
 export const RoomContext = createContext();
 
@@ -11,7 +12,7 @@ const RoomProvider = (props) => {
   const [loading, setLoading] = useState(true);
   const [type, setType] = useState("all");
   const [capacity, setCapacity] = useState(1);
-  const [price, setPrice] = useState(600);
+  const [price, setPrice] = useState(0);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const [minSize, setMinSize] = useState(0);
@@ -19,23 +20,40 @@ const RoomProvider = (props) => {
   const [breakfast, setBreakfast] = useState(false);
   const [pets, setPets] = useState(false);
 
+  //get Data from contentful
+  const getData = async () => {
+    try {
+      let response = await Client.getEntries({
+        content_type: "beachResortRoom",
+        order: "sys.createdAt",
+      });
+      //set rooms
+      const rooms = formatData(response.items);
+      //set the featured rooms
+      const featuredRooms = rooms.filter((room) => room.featured === true);
+      //always show the max price as default
+      const maxPrice = Math.max(...rooms.map((item) => item.price));
+      //always show the max price as default
+      const maxSize = Math.max(...rooms.map((item) => item.size));
+
+      setRooms(rooms);
+      setSortedRooms(rooms);
+      setFeaturedRooms(featuredRooms);
+      setLoading(false);
+      setMaxPrice(maxPrice);
+      setPrice(maxPrice);
+      setMaxSize(maxSize);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //call the formatted data
   useEffect(() => {
-    //set rooms
-    const rooms = formatData(items);
-    //set the featured rooms
-    const featuredRooms = rooms.filter((room) => room.featured === true);
-    //always show the max price as default
-    const maxPrice = Math.max(...rooms.map((item) => item.price));
-    //always show the max price as default
-    const maxSize = Math.max(...rooms.map((item) => item.size));
+    getData();
+  }, []);
 
-    setRooms(rooms);
-    setSortedRooms(rooms);
-    setFeaturedRooms(featuredRooms);
-    setLoading(false);
-    setMaxPrice(maxPrice);
-    // setMaxSize(maxSize);
+  useEffect(() => {
     filteredRooms();
   }, [
     type,
