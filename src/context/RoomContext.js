@@ -20,42 +20,75 @@ const RoomProvider = (props) => {
   const [breakfast, setBreakfast] = useState(false);
   const [pets, setPets] = useState(false);
 
-  //get Data from contentful
-  const getData = async () => {
-    try {
-      let response = await Client.getEntries({
-        content_type: "beachResortRoom",
-        order: "sys.createdAt",
-      });
-      //set rooms
-      const rooms = formatData(response.items);
-      //set the featured rooms
-      const featuredRooms = rooms.filter((room) => room.featured === true);
-      //always show the max price as default
-      const maxPrice = Math.max(...rooms.map((item) => item.price));
-      //always show the max price as default
-      const maxSize = Math.max(...rooms.map((item) => item.size));
-
-      setRooms(rooms);
-      setSortedRooms(rooms);
-      setFeaturedRooms(featuredRooms);
-      setLoading(false);
-      setMaxPrice(maxPrice);
-      setPrice(maxPrice);
-      setMaxSize(maxSize);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  //call the formatted data
   useEffect(() => {
-    getData();
+    //get Data from contentful
+    (async () => {
+      try {
+        let response = await Client.getEntries({
+          content_type: "beachResortRoom",
+          order: "sys.createdAt",
+        });
+        //set rooms
+        const rooms = formatData(response.items);
+        //set the featured rooms
+        const featuredRooms = rooms.filter((room) => room.featured === true);
+        //always show the max price as default
+        const maxPrice = Math.max(...rooms.map((item) => item.price));
+        //always show the max price as default
+        const maxSize = Math.max(...rooms.map((item) => item.size));
+
+        setRooms(rooms);
+        setSortedRooms(rooms);
+        setFeaturedRooms(featuredRooms);
+        setLoading(false);
+        setMaxPrice(maxPrice);
+        setPrice(maxPrice);
+        setMaxSize(maxSize);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   }, []);
 
   useEffect(() => {
+    // Left this as non anonymous function for learning purposes
+    const filteredRooms = () => {
+      let tempRooms = [...rooms];
+
+      //filter by type
+      if (type !== "all") {
+        tempRooms = tempRooms.filter((room) => room.type === type);
+      }
+
+      //filter by capacity
+      if (capacity !== "1") {
+        tempRooms = tempRooms.filter((room) => room.capacity >= capacity);
+      }
+
+      //filter price
+      tempRooms = tempRooms.filter((room) => room.price <= price);
+
+      //filter by size
+      tempRooms = tempRooms.filter(
+        (room) => room.size >= minSize && room.size <= maxSize
+      );
+
+      //filter for breakfast
+      if (breakfast) {
+        tempRooms = tempRooms.filter((room) => room.breakfast === true);
+      }
+
+      //filter for pets
+      if (pets) {
+        tempRooms = tempRooms.filter((room) => room.pets === true);
+      }
+
+      // update avalible rooms
+      setSortedRooms(tempRooms);
+    };
     filteredRooms();
   }, [
+    rooms,
     type,
     capacity,
     price,
@@ -123,41 +156,6 @@ const RoomProvider = (props) => {
     }
   };
 
-  const filteredRooms = () => {
-    let tempRooms = [...rooms];
-
-    //filter by type
-    if (type !== "all") {
-      tempRooms = tempRooms.filter((room) => room.type === type);
-    }
-
-    //filter by capacity
-    if (capacity !== "1") {
-      tempRooms = tempRooms.filter((room) => room.capacity >= capacity);
-    }
-
-    //filter price
-    tempRooms = tempRooms.filter((room) => room.price <= price);
-
-    //filter by size
-    tempRooms = tempRooms.filter(
-      (room) => room.size >= minSize && room.size <= maxSize
-    );
-
-    //filter for breakfast
-    if (breakfast) {
-      tempRooms = tempRooms.filter((room) => room.breakfast === true);
-    }
-
-    //filter for pets
-    if (pets) {
-      tempRooms = tempRooms.filter((room) => room.pets === true);
-    }
-
-    // update avalible rooms
-    setSortedRooms(tempRooms);
-  };
-
   return (
     <RoomContext.Provider
       value={{
@@ -176,7 +174,7 @@ const RoomProvider = (props) => {
         breakfast,
         pets,
         handleChange,
-        filteredRooms,
+        // filteredRooms,
       }}
     >
       {props.children}

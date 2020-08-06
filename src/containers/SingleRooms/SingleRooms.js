@@ -24,7 +24,6 @@ const SingleRooms = (props) => {
       </div>
     );
   }
-  console.log("hi", room);
 
   const {
     name,
