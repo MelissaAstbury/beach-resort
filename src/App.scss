@@ -3,23 +3,23 @@
   padding: 0;
   box-sizing: border-box;
 }
-:root {
-  --primaryColor: #af9a7d;
-  --mainWhite: #fff;
-  --offWhite: #f7f7f7;
-  --mainBlack: #222;
-  --mainGrey: #ececec;
-  --darkGrey: #cfcfcf;
-  --mainTransition: all 0.3s linear;
-  --mainSpacing: 3px;
-  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
-  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
-}
+
+$primaryColor: #af9a7d;
+$mainWhite: #fff;
+$offWhite: #f7f7f7;
+$mainBlack: #222;
+$mainGrey: #ececec;
+$darkGrey: #cfcfcf;
+$mainTransition: all 0.3s linear;
+$mainSpacing: 3px;
+$lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+$darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+
 /* globals */
 body {
   padding-top: 66px;
-  color: var(--mainBlack);
-  background: var(--mainWhite);
+  color: $mainBlack;
+  background: $mainWhite;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   line-height: 1.4;
 }
@@ -56,18 +56,18 @@ h6 {
 .btn-primary {
   display: inline-block;
   text-decoration: none;
-  letter-spacing: var(--mainSpacing);
-  color: var(--mainBlack);
-  background: var(--primaryColor);
+  letter-spacing: $mainSpacing;
+  color: $mainBlack;
+  background: $primaryColor;
   padding: 0.4rem 0.9rem;
-  border: 3px solid var(--primaryColor);
-  transition: var(--mainTransition);
+  border: 3px solid $primaryColor;
+  transition: $mainTransition;
   text-transform: uppercase;
   cursor: pointer;
 }
 .btn-primary:hover {
   background: transparent;
-  color: var(--primaryColor);
+  color: $primaryColor;
 }
 .loading {
   text-transform: capitalize;
@@ -84,7 +84,7 @@ h6 {
   text-transform: capitalize;
   margin: 2rem 0;
   padding: 1rem;
-  letter-spacing: var(--mainSpacing);
+  letter-spacing: $mainSpacing;
 }
 /* end of globals */
 /* Navbar */
@@ -94,7 +94,7 @@ h6 {
   left: 0;
   width: 100%;
   padding: 0.75rem 2rem;
-  background: var(--offWhite);
+  background: $offWhite;
   z-index: 1;
 }
 .nav-header {
@@ -109,27 +109,27 @@ h6 {
 }
 .nav-icon {
   font-size: 1.5rem;
-  color: var(--primaryColor);
+  color: $primaryColor;
 }
 .nav-links {
   height: 0;
   overflow: hidden;
-  transition: var(--mainTransition);
+  transition: $mainTransition;
   list-style-type: none;
 }
 .nav-links a {
   display: block;
   text-decoration: none;
   padding: 1rem 0;
-  color: var(--mainBlack);
-  transition: var(--mainTransition);
+  color: $mainBlack;
+  transition: $mainTransition;
   text-align: center;
   font-size: 1rem;
   font-weight: 600;
-  letter-spacing: var(--mainSpacing);
+  letter-spacing: $mainSpacing;
 }
 .nav-links a:hover {
-  color: var(--primaryColor);
+  color: $primaryColor;
 }
 
 .show-nav {
@@ -173,11 +173,11 @@ h6 {
 .banner {
   display: inline-block;
   background: rgba(0, 0, 0, 0.5);
-  color: var(--mainWhite);
+  color: $mainWhite;
   padding: 2rem 1rem;
   text-align: center;
   text-transform: capitalize;
-  letter-spacing: var(--mainSpacing);
+  letter-spacing: $mainSpacing;
 }
 .banner h1 {
   font-size: 2.5rem;
@@ -185,7 +185,7 @@ h6 {
 .banner div {
   width: 10rem;
   height: 5px;
-  background: var(--primaryColor);
+  background: $primaryColor;
   margin: 1.7rem auto;
 }
 .banner p {
@@ -216,7 +216,7 @@ h6 {
 }
 .section-title h4 {
   font-size: 2rem;
-  letter-spacing: var(--mainSpacing);
+  letter-spacing: $mainSpacing;
   text-transform: capitalize;
   margin-bottom: 1rem;
 }
@@ -224,7 +224,7 @@ h6 {
   width: 5rem;
   height: 5px;
   margin: 0 auto;
-  background: var(--primaryColor);
+  background: $primaryColor;
 }
 /* end of Title */
 
@@ -233,7 +233,7 @@ h6 {
   padding: 5rem 0;
 }
 .services {
-  background: var(--darkGrey);
+  background: $darkGrey;
   text-align: center;
 }
 .services-center {
@@ -246,12 +246,13 @@ h6 {
 }
 .service span {
   display: inline-block;
-  color: var(--primaryColor);
+  color: $primaryColor;
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
 }
 .services h6 {
-  letter-spacing: var(--mainSpacing);
+  letter-spacing: $mainSpacing;
+  text-transform: uppercase;
 }
 .services p {
   width: 80%;
@@ -298,11 +299,11 @@ h6 {
 /* end pf featured rooms */
 /* room */
 .room {
-  box-shadow: var(--lightShadow);
-  transition: var(--mainTransition);
+  box-shadow: $lightShadow;
+  transition: $mainTransition;
 }
 .room:hover {
-  box-shadow: var(--darkShadow);
+  box-shadow: $darkShadow;
 }
 
 .img-container {
@@ -311,25 +312,25 @@ h6 {
 .img-container img {
   width: 100%;
   display: block;
-  transition: var(--mainTransition);
+  transition: $mainTransition;
 }
 .price-top {
   position: absolute;
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.8);
-  color: var(--mainWhite);
+  color: $mainWhite;
   padding: 0.3rem 0.6rem 0.5rem;
   border-bottom-right-radius: 1rem;
   font-size: 0.5rem;
   text-align: center;
-  transition: var(--mainTransition);
+  transition: $mainTransition;
 }
 .price-top h6 {
   margin-bottom: 0;
   font-size: 0.9rem;
   font-weight: 300;
-  letter-spacing: var(--mainSpacing);
+  letter-spacing: $mainSpacing;
 }
 .room-link {
   position: absolute;
@@ -351,12 +352,12 @@ h6 {
   transform: translate(-50%, -50%) scale(1);
 }
 .room-info {
-  background: var(--darkGrey);
+  background: $darkGrey;
   text-transform: capitalize;
   padding: 0.5rem 0;
   text-align: center;
   font-weight: 700;
-  letter-spacing: var(--mainSpacing);
+  letter-spacing: $mainSpacing;
 }
 /* end of room  */
 /* single room*/
@@ -388,7 +389,7 @@ h6 {
 }
 .desc h3 {
   text-transform: capitalize;
-  letter-spacing: var(--mainSpacing);
+  letter-spacing: $mainSpacing;
 }
 .desc p {
   line-height: 1.5;
@@ -396,7 +397,7 @@ h6 {
 .info h3,
 .info h6 {
   text-transform: capitalize;
-  letter-spacing: var(--mainSpacing);
+  letter-spacing: $mainSpacing;
 }
 
 .info h6 {
@@ -408,7 +409,7 @@ h6 {
 }
 .room-extras h6 {
   text-transform: capitalize;
-  letter-spacing: var(--mainSpacing);
+  letter-spacing: $mainSpacing;
 }
 .extras {
   list-style-type: none;
@@ -476,7 +477,7 @@ h6 {
 }
 .form-group label {
   display: block;
-  letter-spacing: var(--mainSpacing);
+  letter-spacing: $mainSpacing;
   margin-bottom: 0.5rem;
 }
 .form-control {
@@ -490,7 +491,7 @@ h6 {
 .size-input {
   width: 40%;
   padding: 0.2rem;
-  border: 1px solid var(--mainBlack);
+  border: 1px solid $mainBlack;
   border-radius: 0.3rem;
   margin-right: 0.3rem;
 }
