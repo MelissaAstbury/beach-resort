@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import logo from "../../images/logo.svg";
+import logo from "../../images/logo-5.png";
 import { FaAlignRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,8 @@ const Header = () => {
       <div className="nav-center">
         <div className="nav-header">
           <Link to="/">
-            <img src={logo} alt="Beach Resort" />
+            <h3>Mel's Beach Breaks</h3>
+            {/* <img src={logo} alt="Beach Resort" /> */}
           </Link>
           <button
             type="button"

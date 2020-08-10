@@ -100,6 +100,20 @@ h6 {
 .nav-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    margin-bottom: 0;
+    border: 2px solid #af9a7d;
+    padding: 8px;
+    background-color: transparent;
+
+    &:hover {
+      background-color: #af9a7d;
+      transition: all 0.3s linear;
+      cursor: pointer;
+    }
+  }
 }
 .nav-btn {
   background: transparent;
@@ -143,10 +157,12 @@ h6 {
     max-width: 1170px;
     margin: 0 auto;
     display: flex;
+    justify-content: space-between;
   }
   .nav-links {
     height: auto;
     display: flex;
+    align-items: center;
     margin-left: 4rem;
   }
   .nav-links a {
@@ -486,6 +502,30 @@ h6 {
   width: 100%;
   background: transparent;
   font-size: 1rem;
+  border: 1px solid white;
+  background-color: #f7f7f7;
+  color: black;
+  letter-spacing: 3px;
+  border-radius: 2px;
+  padding: 4px 2px;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid black;
+    transition: all 0.3s linear;
+  }
+}
+.form-control[type="range"] {
+  -webkit-appearance: none;
+  outline: none;
+  height: 14px;
+}
+.form-control[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  background-color: #af9a7d;
 }
 .size-inputs {
   display: flex;
@@ -496,6 +536,18 @@ h6 {
   border: 1px solid $mainBlack;
   border-radius: 0.3rem;
   margin-right: 0.3rem;
+  border: 1px solid white;
+  background-color: #f7f7f7;
+  color: black;
+  letter-spacing: 3px;
+  border-radius: 2px;
+  padding: 4px 2px;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid black;
+    transition: all 0.3s linear;
+  }
 }
 .single-extra label {
   display: inline-block;
